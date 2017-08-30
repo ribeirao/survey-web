@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Survey WEB</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
+    <style>
+        .navigation-order{
+            margin-bottom: 30px;
+        }
+    </style>
+    <h1>Survey WEB</h1>
+</head>
+<body>
+<form action="#" th:object="${surveyForm}" th:action="@{/addQuestion}" method="post">
+    <ul id="validation-messages" th:if="${#fields.hasErrors('*')}">
+        <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+    </ul>
+    <table>
+        <caption>People</caption>
+        <thead>
+        <tr>
+            <th>enunciado</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td><input type="text" th:field="*{surveyName}"/></td>
+        </tr>
+        </tbody>
+
+        <tfoot></tfoot>
+    </table>
+    <input type="submit" value="Save"/>
+</form>
+</body>
+</html>
