@@ -12,4 +12,10 @@ public class SurveyService {
     public Survey retrieveActiveSurvey() {
         return surveyRepository.findOneByActive(true);
     }
+
+    public Survey saveSurvey(String name) {
+        Survey survey = new Survey(name);
+
+        return surveyRepository.save(survey);
+    }
 }

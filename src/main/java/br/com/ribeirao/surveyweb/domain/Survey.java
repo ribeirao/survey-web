@@ -1,14 +1,13 @@
 package br.com.ribeirao.surveyweb.domain;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Survey {
@@ -35,16 +34,15 @@ public class Survey {
     @OneToMany(mappedBy = "survey")
     private List<Question> questions;
 
-    private Survey() {}
+    private Survey() {
+    }
 
-    public Survey(Long id, String name, boolean active, Date creationDate, Date updateDate,
-            Date closeDate) {
-        this.id = id;
+    public Survey(String name) {
         this.name = name;
-        this.active = active;
-        this.creationDate = creationDate;
-        this.updateDate = updateDate;
-        this.closeDate = closeDate;
+        this.active = false;
+        this.creationDate = new Date();
+        this.updateDate = new Date();
+        this.closeDate = new Date();
     }
 
     public Long getId() {
