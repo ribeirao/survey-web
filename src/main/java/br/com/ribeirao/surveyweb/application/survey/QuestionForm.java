@@ -2,6 +2,8 @@ package br.com.ribeirao.surveyweb.application.survey;
 
 public class QuestionForm {
 
+    private Integer surveyId;
+
     private String animation;
 
     private String statement;
@@ -29,6 +31,14 @@ public class QuestionForm {
     private String correctAnswer;
 
     public QuestionForm() {
+    }
+
+    public Integer getSurveyId() {
+        return surveyId;
+    }
+
+    public void setSurveyId(Integer surveyId) {
+        this.surveyId = surveyId;
     }
 
     public String getAnimation() {
