@@ -1,5 +1,6 @@
 package br.com.ribeirao.surveyweb.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,7 @@ public class Survey {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @Column
     private String name;
@@ -31,7 +32,7 @@ public class Survey {
     @Column
     private Date closeDate;
 
-    @OneToMany(mappedBy = "survey")
+    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
     private List<Question> questions;
 
     private Survey() {
@@ -45,11 +46,11 @@ public class Survey {
         this.closeDate = new Date();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

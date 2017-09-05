@@ -13,27 +13,22 @@
     <h1>Survey WEB</h1>
 </head>
 <body>
-<form action="#" th:object="${surveyForm}" th:action="@{/addQuestion}" method="post">
+<form action="#" th:object="${surveyForm}" th:action="@{/save}" method="post">
     <ul id="validation-messages" th:if="${#fields.hasErrors('*')}">
         <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
     </ul>
     <table>
-        <caption>People</caption>
-        <thead>
         <tr>
-            <th>enunciado</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
+            <td>Nome do questionário:</td>
             <td><input type="text" th:field="*{surveyName}"/></td>
+            <td th:if="${#fields.hasErrors('surveyName')}" th:errors="*{surveyName}">Name Error</td>
         </tr>
-        </tbody>
-
-        <tfoot></tfoot>
+        <tr>
+            <td>
+                <button type="submit">Criar questões</button>
+            </td>
+        </tr>
     </table>
-    <input type="submit" value="Save"/>
 </form>
 </body>
 </html>

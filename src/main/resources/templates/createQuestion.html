@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Survey WEB</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
+    <style>
+        .navigation-order{
+            margin-bottom: 30px;
+        }
+    </style>
+    <h1>Survey WEB</h1>
+</head>
+<body>
+<form action="#" th:object="${questionForm}" th:action="@{/addQuestion}" method="post">
+    <input type="hidden" th:field="*{surveyId}"/>
+    <ul id="validation-messages" th:if="${#fields.hasErrors('*')}">
+        <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+    </ul>
+    <table>
+        <tr>
+            <td>Enunciado da questão:</td>
+            <td><input type="text" th:field="*{statement}"/></td>
+            <td th:if="${#fields.hasErrors('statement')}" th:errors="*{statement}">Name Error</td>
+            <td>Libras do enunciado(código do youtube):</td>
+            <td><input type="text" th:field="*{animation}"/></td>
+        </tr>
+        <tr>
+            <td>Questão A:</td>
+            <td><input type="text" th:field="*{optionA}"/></td>
+            <td th:if="${#fields.hasErrors('optionA')}" th:errors="*{optionA}">Name Error</td>
+            <td>Libras da opção A(código do youtube):</td>
+            <td><input type="text" th:field="*{animationA}"/></td>
+        </tr>
+        <tr>
+            <td>Questão B:</td>
+            <td><input type="text" th:field="*{optionB}"/></td>
+            <td th:if="${#fields.hasErrors('optionB')}" th:errors="*{optionB}">Name Error</td>
+            <td>Libras da opção B(código do youtube):</td>
+            <td><input type="text" th:field="*{animationB}"/></td>
+        </tr>
+        <tr>
+            <td>Questão C:</td>
+            <td><input type="text" th:field="*{optionC}"/></td>
+            <td th:if="${#fields.hasErrors('optionC')}" th:errors="*{optionC}">Name Error</td>
+            <td>Libras da opção C(código do youtube):</td>
+            <td><input type="text" th:field="*{animationC}"/></td>
+        </tr>
+        <tr>
+            <td>Questão D:</td>
+            <td><input type="text" th:field="*{optionD}"/></td>
+            <td th:if="${#fields.hasErrors('optionD')}" th:errors="*{optionD}">Name Error</td>
+            <td>Libras da opção D(código do youtube):</td>
+            <td><input type="text" th:field="*{animationD}"/></td>
+        </tr>
+        <tr>
+            <td>Questão E:</td>
+            <td><input type="text" th:field="*{optionE}"/></td>
+            <td th:if="${#fields.hasErrors('optionE')}" th:errors="*{optionE}">Name Error</td>
+            <td>Libras da opção E(código do youtube):</td>
+            <td><input type="text" th:field="*{animationE}"/></td>
+        </tr>
+        <tr>
+            <td>Resposta Correta:</td>
+            <td><input type="text" th:field="*{correctAnswer}"/></td>
+            <td th:if="${#fields.hasErrors('correctAnswer')}" th:errors="*{correctAnswer}">Name Error</td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Criar nova questão</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -2,49 +2,49 @@ package br.com.ribeirao.surveyweb.port.adapter.web.controller;
 
 import br.com.ribeirao.surveyweb.application.survey.QuestionForm;
 import br.com.ribeirao.surveyweb.application.survey.SurveyForm;
+import br.com.ribeirao.surveyweb.domain.Survey;
 import br.com.ribeirao.surveyweb.domain.SurveyService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class CreateSurveyController {
+
+    Logger log = LoggerFactory.getLogger(CreateSurveyController.class);
 
     @Autowired
     private SurveyService surveyService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/init", method = RequestMethod.GET)
     public String initCreation(Model model) {
         model.addAttribute("surveyForm", new SurveyForm());
         return "create";
     }
 
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String create(@ModelAttribute SurveyForm surveyForm, Model model) {
+        Survey survey = surveyService.saveSurvey(surveyForm.getSurveyName());
+        QuestionForm form = new QuestionForm();
+        form.setSurveyId(survey.getId());
+        model.addAttribute("questionForm", form);
+
+        return "createQuestion";
+    }
+
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
-    public String create(@ModelAttribute SurveyForm surveyForm) {
+    public String addQuestion(@ModelAttribute QuestionForm form, Model model) {
+        Survey survey = surveyService.saveQuestion(form);
+        form = new QuestionForm();
+        form.setSurveyId(survey.getId());
+        model.addAttribute("questionForm", form);
 
-        surveyService.saveSurvey(surveyForm.getSurveyName());
-
-        return "create";
+        return "createQuestion";
     }
 
-    @RequestMapping(value = "/create", params = {"addRow"})
-    public String addRow(final SurveyForm surveyForm, final BindingResult bindingResult) {
-        surveyForm.getQuestionFormList().add(new QuestionForm());
-        return "create";
-    }
-
-    @RequestMapping(value = "/create", params = {"removeRow"})
-    public String removeRow(
-            final SurveyForm surveyForm, final BindingResult bindingResult,
-            final HttpServletRequest req) {
-        final Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
-        surveyForm.getQuestionFormList().remove(rowId.intValue());
-        return "create";
-    }
 }

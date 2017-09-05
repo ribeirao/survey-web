@@ -1,6 +1,6 @@
 package br.com.ribeirao.surveyweb.domain;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,15 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Date;
 
 @Entity
 public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @JsonIgnore
     @ManyToOne
@@ -66,13 +65,13 @@ public class Question {
     @Column
     private Date creationDate;
 
-    private Question() {}
+    private Question() {
+    }
 
-    public Question(Long id, String animation, String statement, String optionA, String animationA,
-            String optionB, String animationB, String optionC, String animationC, String optionD,
-            String animationD, String optionE, String animationE, String correctAnswer,
-            Date creationDate) {
-        this.id = id;
+    public Question(Survey survey, String animation, String statement, String optionA, String animationA,
+                    String optionB, String animationB, String optionC, String animationC, String optionD,
+                    String animationD, String optionE, String animationE, String correctAnswer) {
+        this.survey = survey;
         this.animation = animation;
         this.statement = statement;
         this.optionA = optionA;
@@ -86,14 +85,14 @@ public class Question {
         this.optionE = optionE;
         this.animationE = animationE;
         this.correctAnswer = correctAnswer;
-        this.creationDate = creationDate;
+        this.creationDate = new Date();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
