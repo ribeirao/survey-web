@@ -3,11 +3,11 @@ package br.com.ribeirao.surveyweb.application;
 
 import java.util.Arrays;
 
-public class FindQuestionsCommand {
+public class SearchSurveyCommand {
 
     private Integer[] questions;
 
-    public FindQuestionsCommand () {
+    public SearchSurveyCommand() {
 
     }
 
@@ -24,7 +24,7 @@ public class FindQuestionsCommand {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        FindQuestionsCommand that = (FindQuestionsCommand) o;
+        SearchSurveyCommand that = (SearchSurveyCommand) o;
 
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
         return Arrays.equals(questions, that.questions);
@@ -35,14 +35,14 @@ public class FindQuestionsCommand {
         return Arrays.hashCode(questions);
     }
 
-    public FindQuestionsCommand(Integer ...questions) {
+    public SearchSurveyCommand(Integer ...questions) {
 
         this.questions = questions;
     }
 
     @Override
     public String toString() {
-        return "FindQuestionsCommand{" +
+        return "SearchSurveyCommand{" +
                 "questions=" + Arrays.toString(questions) +
                 '}';
     }

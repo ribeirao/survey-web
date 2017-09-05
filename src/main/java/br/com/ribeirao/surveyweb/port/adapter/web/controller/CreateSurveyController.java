@@ -33,18 +33,5 @@ public class CreateSurveyController {
         return "create";
     }
 
-    @RequestMapping(value = "/create", params = {"addRow"})
-    public String addRow(final SurveyForm surveyForm, final BindingResult bindingResult) {
-        surveyForm.getQuestionFormList().add(new QuestionForm());
-        return "create";
-    }
 
-    @RequestMapping(value = "/create", params = {"removeRow"})
-    public String removeRow(
-            final SurveyForm surveyForm, final BindingResult bindingResult,
-            final HttpServletRequest req) {
-        final Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
-        surveyForm.getQuestionFormList().remove(rowId.intValue());
-        return "create";
-    }
 }
