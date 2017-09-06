@@ -27,8 +27,8 @@
         <td th:text="${survey.id}" ></td>
         <td th:text="${survey.name}"></td>
         <td th:switch="${survey.active}">
-            <td th:case="'true'"> Desativar</td>
-            <td th:case="'false"> Ativar</td>
+        <td th:case="'true'"> <a th:href="@{'/survey/desactive/' + ${survey.id}}"> Desativar </a></td>
+        <td th:case="'*'"><a th:href="@{'/survey/active/' + ${survey.id}}"> Ativar </a></td>
         </td>
 
         <!--<a th:href="@{'/survey/active/' + ${survey.id}}" th:switch="${survey.active}" th.case="true" Desativar th:case="*" Ativar>
