@@ -5,12 +5,10 @@ import java.util.List;
 
 public class SurveyForm {
 
+    List<QuestionForm> questionFormList = new ArrayList<>();
     private String surveyName;
 
-    List<QuestionForm> questionFormList = new ArrayList<>();
-
-    public SurveyForm() {
-    }
+    public SurveyForm() {}
 
     public String getSurveyName() {
         return surveyName;

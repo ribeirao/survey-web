@@ -11,6 +11,11 @@ public class SearchSurveyCommand {
 
     }
 
+    public SearchSurveyCommand(Integer... questions) {
+
+        this.questions = questions;
+    }
+
     public Integer[] getQuestions() {
         return questions;
     }
@@ -21,8 +26,10 @@ public class SearchSurveyCommand {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         SearchSurveyCommand that = (SearchSurveyCommand) o;
 
@@ -35,16 +42,9 @@ public class SearchSurveyCommand {
         return Arrays.hashCode(questions);
     }
 
-    public SearchSurveyCommand(Integer ...questions) {
-
-        this.questions = questions;
-    }
-
     @Override
     public String toString() {
-        return "SearchSurveyCommand{" +
-                "questions=" + Arrays.toString(questions) +
-                '}';
+        return "SearchSurveyCommand{" + "questions=" + Arrays.toString(questions) + '}';
     }
 
 

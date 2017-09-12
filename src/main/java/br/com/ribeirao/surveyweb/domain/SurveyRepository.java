@@ -1,8 +1,8 @@
 package br.com.ribeirao.surveyweb.domain;
 
-import org.springframework.data.repository.CrudRepository;
-
 import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
 
 public interface SurveyRepository extends CrudRepository<Survey, Integer> {
 
@@ -10,7 +10,7 @@ public interface SurveyRepository extends CrudRepository<Survey, Integer> {
 
     List<Survey> findAll();
 
-    List<Survey> findById(Integer ...questions);
+    List<Survey> findById(Integer... questions);
 
 
 }

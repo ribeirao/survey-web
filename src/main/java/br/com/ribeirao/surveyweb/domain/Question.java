@@ -1,6 +1,6 @@
 package br.com.ribeirao.surveyweb.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Question {
@@ -65,12 +66,12 @@ public class Question {
     @Column
     private Date creationDate;
 
-    private Question() {
-    }
+    private Question() {}
 
-    public Question(Survey survey, String animation, String statement, String optionA, String animationA,
-                    String optionB, String animationB, String optionC, String animationC, String optionD,
-                    String animationD, String optionE, String animationE, String correctAnswer) {
+    public Question(Survey survey, String animation, String statement, String optionA,
+            String animationA, String optionB, String animationB, String optionC, String animationC,
+            String optionD, String animationD, String optionE, String animationE,
+            String correctAnswer) {
         this.survey = survey;
         this.animation = animation;
         this.statement = statement;

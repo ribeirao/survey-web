@@ -54,7 +54,7 @@ public class SurveyService {
 
     private List<QuestionAnswer> constructQuestionAnswerList(SaveAnswerCommand command) {
         List<QuestionAnswer> list = new ArrayList<>();
-        command.getSaveQuestionAnswerCommands().stream()
+        command.getQuestionAnswers().stream()
                 .forEach(qa -> list.add(new QuestionAnswer(qa.getQuestionId(), qa.getAnswer())));
 
         return list;

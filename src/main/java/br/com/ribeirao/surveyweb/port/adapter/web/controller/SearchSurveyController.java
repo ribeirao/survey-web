@@ -1,15 +1,16 @@
 package br.com.ribeirao.surveyweb.port.adapter.web.controller;
 
-import br.com.ribeirao.surveyweb.domain.Survey;
-import br.com.ribeirao.surveyweb.domain.SurveyService;
+import java.util.List;
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
-import java.util.logging.Logger;
+import br.com.ribeirao.surveyweb.domain.Survey;
+import br.com.ribeirao.surveyweb.domain.SurveyService;
 
 @Controller
 public class SearchSurveyController {

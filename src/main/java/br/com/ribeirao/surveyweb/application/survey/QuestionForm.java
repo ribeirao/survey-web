@@ -30,8 +30,7 @@ public class QuestionForm {
 
     private String correctAnswer;
 
-    public QuestionForm() {
-    }
+    public QuestionForm() {}
 
     public Integer getSurveyId() {
         return surveyId;

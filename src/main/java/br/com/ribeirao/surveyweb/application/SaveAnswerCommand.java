@@ -5,14 +5,13 @@ import java.util.List;
 public class SaveAnswerCommand {
 
     private int surveyId;
-    private List<SaveQuestionAnswerCommand> saveQuestionAnswerCommands;
+    private List<SaveQuestionAnswerCommand> questionAnswers;
 
     private SaveAnswerCommand() {}
 
-    public SaveAnswerCommand(int surveyId,
-            List<SaveQuestionAnswerCommand> saveQuestionAnswerCommands) {
+    public SaveAnswerCommand(int surveyId, List<SaveQuestionAnswerCommand> questionAnswers) {
         this.surveyId = surveyId;
-        this.saveQuestionAnswerCommands = saveQuestionAnswerCommands;
+        this.questionAnswers = questionAnswers;
     }
 
     public int getSurveyId() {
@@ -23,19 +22,18 @@ public class SaveAnswerCommand {
         this.surveyId = surveyId;
     }
 
-    public List<SaveQuestionAnswerCommand> getSaveQuestionAnswerCommands() {
-        return saveQuestionAnswerCommands;
+    public List<SaveQuestionAnswerCommand> getQuestionAnswers() {
+        return questionAnswers;
     }
 
-    public void setSaveQuestionAnswerCommands(
-            List<SaveQuestionAnswerCommand> saveQuestionAnswerCommands) {
-        this.saveQuestionAnswerCommands = saveQuestionAnswerCommands;
+    public void setQuestionAnswers(List<SaveQuestionAnswerCommand> questionAnswers) {
+        this.questionAnswers = questionAnswers;
     }
 
     @Override
     public String toString() {
-        return "SaveAnswerCommand{" + "surveyId=" + surveyId + ", saveQuestionAnswerCommands="
-                + saveQuestionAnswerCommands + '}';
+        return "SaveAnswerCommand{" + "surveyId=" + surveyId + ", questionAnswers="
+                + questionAnswers + '}';
     }
 
     @Override
@@ -49,16 +47,14 @@ public class SaveAnswerCommand {
 
         if (surveyId != that.surveyId)
             return false;
-        return saveQuestionAnswerCommands != null
-                ? saveQuestionAnswerCommands.equals(that.saveQuestionAnswerCommands)
-                : that.saveQuestionAnswerCommands == null;
+        return questionAnswers != null ? questionAnswers.equals(that.questionAnswers)
+                : that.questionAnswers == null;
     }
 
     @Override
     public int hashCode() {
         int result = surveyId;
-        result = 31 * result
-                + (saveQuestionAnswerCommands != null ? saveQuestionAnswerCommands.hashCode() : 0);
+        result = 31 * result + (questionAnswers != null ? questionAnswers.hashCode() : 0);
         return result;
     }
 }
