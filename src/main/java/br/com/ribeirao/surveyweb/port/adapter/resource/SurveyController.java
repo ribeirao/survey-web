@@ -1,6 +1,7 @@
 package br.com.ribeirao.surveyweb.port.adapter.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ public class SurveyController {
     }
 
     @RequestMapping(value = "/surveys", method = RequestMethod.POST)
-    public boolean saveAnswer(SaveAnswerCommand command) {
+    public boolean saveAnswer(@RequestBody SaveAnswerCommand command) {
         return surveyService.saveAnswer(command);
     }
 }
