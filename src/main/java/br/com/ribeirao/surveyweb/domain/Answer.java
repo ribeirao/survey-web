@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Answer {
@@ -16,17 +15,15 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    private Survey survey;
+    private int surveyId;
 
     @OneToMany
     private List<QuestionAnswer> questionAnswerList;
 
     public Answer() {}
 
-    public Answer(Long id, Survey survey, List<QuestionAnswer> questionAnswerList) {
-        this.id = id;
-        this.survey = survey;
+    public Answer(int surveyId, List<QuestionAnswer> questionAnswerList) {
+        this.surveyId = surveyId;
         this.questionAnswerList = questionAnswerList;
     }
 
@@ -38,12 +35,12 @@ public class Answer {
         this.id = id;
     }
 
-    public Survey getSurvey() {
-        return survey;
+    public int getSurveyId() {
+        return surveyId;
     }
 
-    public void setSurvey(Survey survey) {
-        this.survey = survey;
+    public void setSurveyId(int surveyId) {
+        this.surveyId = surveyId;
     }
 
     public List<QuestionAnswer> getQuestionAnswerList() {
@@ -56,7 +53,7 @@ public class Answer {
 
     @Override
     public String toString() {
-        return "Answer{" + "id=" + id + ", survey=" + survey + ", questionAnswerList="
+        return "Answer{" + "id=" + id + ", surveyId=" + surveyId + ", questionAnswerList="
                 + questionAnswerList + '}';
     }
 
@@ -69,9 +66,9 @@ public class Answer {
 
         Answer answer = (Answer) o;
 
-        if (id != null ? !id.equals(answer.id) : answer.id != null)
+        if (surveyId != answer.surveyId)
             return false;
-        if (survey != null ? !survey.equals(answer.survey) : answer.survey != null)
+        if (id != null ? !id.equals(answer.id) : answer.id != null)
             return false;
         return questionAnswerList != null ? questionAnswerList.equals(answer.questionAnswerList)
                 : answer.questionAnswerList == null;
@@ -80,7 +77,7 @@ public class Answer {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (survey != null ? survey.hashCode() : 0);
+        result = 31 * result + surveyId;
         result = 31 * result + (questionAnswerList != null ? questionAnswerList.hashCode() : 0);
         return result;
     }

@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class QuestionAnswer {
@@ -14,17 +13,16 @@ public class QuestionAnswer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    private Question question;
+    private int questionId;
 
     @Column
     private String answer;
 
     public QuestionAnswer() {}
 
-    public QuestionAnswer(Long id, Question question, String answer) {
+    public QuestionAnswer(int questionId, String answer) {
         this.id = id;
-        this.question = question;
+        this.questionId = questionId;
         this.answer = answer;
     }
 
@@ -36,12 +34,12 @@ public class QuestionAnswer {
         this.id = id;
     }
 
-    public Question getQuestion() {
-        return question;
+    public int getQuestionId() {
+        return questionId;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
     }
 
     public String getAnswer() {
@@ -54,7 +52,7 @@ public class QuestionAnswer {
 
     @Override
     public String toString() {
-        return "QuestionAnswer{" + "id=" + id + ", question=" + question + ", answer='" + answer
+        return "QuestionAnswer{" + "id=" + id + ", questionId=" + questionId + ", answer='" + answer
                 + '\'' + '}';
     }
 
@@ -67,9 +65,9 @@ public class QuestionAnswer {
 
         QuestionAnswer that = (QuestionAnswer) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null)
+        if (questionId != that.questionId)
             return false;
-        if (question != null ? !question.equals(that.question) : that.question != null)
+        if (id != null ? !id.equals(that.id) : that.id != null)
             return false;
         return answer != null ? answer.equals(that.answer) : that.answer == null;
     }
@@ -77,7 +75,7 @@ public class QuestionAnswer {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (question != null ? question.hashCode() : 0);
+        result = 31 * result + questionId;
         result = 31 * result + (answer != null ? answer.hashCode() : 0);
         return result;
     }

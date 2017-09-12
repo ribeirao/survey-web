@@ -3,11 +3,11 @@ package br.com.ribeirao.surveyweb.application;
 public class SaveQuestionAnswerCommand {
 
     private int questionId;
-    private int answer;
+    private String answer;
 
     private SaveQuestionAnswerCommand() {}
 
-    public SaveQuestionAnswerCommand(int questionId, int answer) {
+    public SaveQuestionAnswerCommand(int questionId, String answer) {
         this.questionId = questionId;
         this.answer = answer;
     }
@@ -20,11 +20,11 @@ public class SaveQuestionAnswerCommand {
         this.questionId = questionId;
     }
 
-    public int getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(int answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 
@@ -45,13 +45,13 @@ public class SaveQuestionAnswerCommand {
 
         if (questionId != that.questionId)
             return false;
-        return answer == that.answer;
+        return answer != null ? answer.equals(that.answer) : that.answer == null;
     }
 
     @Override
     public int hashCode() {
         int result = questionId;
-        result = 31 * result + answer;
+        result = 31 * result + (answer != null ? answer.hashCode() : 0);
         return result;
     }
 }

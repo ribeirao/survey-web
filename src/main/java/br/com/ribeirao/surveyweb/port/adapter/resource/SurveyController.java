@@ -22,6 +22,6 @@ public class SurveyController {
 
     @RequestMapping(value = "/surveys", method = RequestMethod.POST)
     public boolean saveAnswer(SaveAnswerCommand command) {
-        return true;
+        return surveyService.saveAnswer(command);
     }
 }
