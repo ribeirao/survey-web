@@ -5,11 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
-    <style>
-        .navigation-order{
-            margin-bottom: 30px;
-        }
-    </style>
     <h1>Survey WEB</h1>
 </head>
 <body>
@@ -21,54 +16,71 @@
     <table>
         <tr>
             <td>Enunciado da questão:</td>
-            <td><input type="text" th:field="*{statement}"/></td>
+            <td><input type="textArea" th:field="*{statement}"/></td>
             <td th:if="${#fields.hasErrors('statement')}" th:errors="*{statement}">Name Error</td>
             <td>Libras do enunciado(código do youtube):</td>
             <td><input type="text" th:field="*{animation}"/></td>
         </tr>
         <tr>
             <td>Questão A:</td>
-            <td><input type="text" th:field="*{optionA}"/></td>
+            <td><input type="textArea" th:field="*{optionA}"/></td>
             <td th:if="${#fields.hasErrors('optionA')}" th:errors="*{optionA}">Name Error</td>
             <td>Libras da opção A(código do youtube):</td>
             <td><input type="text" th:field="*{animationA}"/></td>
         </tr>
         <tr>
             <td>Questão B:</td>
-            <td><input type="text" th:field="*{optionB}"/></td>
+            <td><input type="textArea" th:field="*{optionB}"/></td>
             <td th:if="${#fields.hasErrors('optionB')}" th:errors="*{optionB}">Name Error</td>
             <td>Libras da opção B(código do youtube):</td>
             <td><input type="text" th:field="*{animationB}"/></td>
         </tr>
         <tr>
             <td>Questão C:</td>
-            <td><input type="text" th:field="*{optionC}"/></td>
+            <td><input type="textArea" th:field="*{optionC}"/></td>
             <td th:if="${#fields.hasErrors('optionC')}" th:errors="*{optionC}">Name Error</td>
             <td>Libras da opção C(código do youtube):</td>
             <td><input type="text" th:field="*{animationC}"/></td>
         </tr>
         <tr>
             <td>Questão D:</td>
-            <td><input type="text" th:field="*{optionD}"/></td>
+            <td><input type="textArea" th:field="*{optionD}"/></td>
             <td th:if="${#fields.hasErrors('optionD')}" th:errors="*{optionD}">Name Error</td>
             <td>Libras da opção D(código do youtube):</td>
             <td><input type="text" th:field="*{animationD}"/></td>
         </tr>
         <tr>
             <td>Questão E:</td>
-            <td><input type="text" th:field="*{optionE}"/></td>
+            <td><input type="textArea" th:field="*{optionE}"/></td>
             <td th:if="${#fields.hasErrors('optionE')}" th:errors="*{optionE}">Name Error</td>
             <td>Libras da opção E(código do youtube):</td>
             <td><input type="text" th:field="*{animationE}"/></td>
         </tr>
         <tr>
             <td>Resposta Correta:</td>
-            <td><input type="text" th:field="*{correctAnswer}"/></td>
+            <td>
+                <input type="radio" th:field="*{correctAnswer}" th:value="A"/>
+                <label>A</label>
+                <input type="radio" th:field="*{correctAnswer}" th:value="B"/>
+                <label>B</label>
+                <input type="radio" th:field="*{correctAnswer}" th:value="C"/>
+                <label>C</label>
+                <input type="radio" th:field="*{correctAnswer}" th:value="D"/>
+                <label>D</label>
+                <input type="radio" th:field="*{correctAnswer}" th:value="E"/>
+                <label>E</label>
+            </td>
             <td th:if="${#fields.hasErrors('correctAnswer')}" th:errors="*{correctAnswer}">Name Error</td>
         </tr>
         <tr>
+            <td>Criar outra questão ao salvar:</td>
             <td>
-                <button type="submit">Criar nova questão</button>
+                <input type="checkbox" th:field="*{moreQuestion}" value="true" checked="checked"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Salvar e ativar questionário</button>
             </td>
         </tr>
     </table>

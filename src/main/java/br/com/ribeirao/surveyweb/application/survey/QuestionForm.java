@@ -30,6 +30,8 @@ public class QuestionForm {
 
     private String correctAnswer;
 
+    private boolean moreQuestion;
+
     public QuestionForm() {}
 
     public Integer getSurveyId() {
@@ -142,5 +144,13 @@ public class QuestionForm {
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    public boolean isMoreQuestion() {
+        return moreQuestion;
+    }
+
+    public void setMoreQuestion(boolean moreQuestion) {
+        this.moreQuestion = moreQuestion;
     }
 }

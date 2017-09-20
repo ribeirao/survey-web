@@ -45,7 +45,12 @@ public class CreateSurveyController {
         form.setSurveyId(survey.getId());
         model.addAttribute("questionForm", form);
 
-        return "createQuestion";
+        if (form.isMoreQuestion())
+            return "createQuestion";
+
+        return "redirect:/index.jhtml";
     }
+
+
 
 }

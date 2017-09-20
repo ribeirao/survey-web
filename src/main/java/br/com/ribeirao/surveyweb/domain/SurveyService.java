@@ -42,6 +42,12 @@ public class SurveyService {
 
         survey.getQuestions().add(question);
 
+        /*
+         * if (form.isMoreQuestion()) { Survey activeSurvey =
+         * surveyRepository.findOneByActive(true); activeSurvey.setActive(false);
+         * surveyRepository.save(activeSurvey); survey.setActive(true); }
+         */
+
         return surveyRepository.save(survey);
     }
 
