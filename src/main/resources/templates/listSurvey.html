@@ -1,42 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Survey WEB - Cadastro de Perguntas</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+<html>
+<head th:replace="fragments/header :: header"></head>
 <body>
-<table class="table table-bordered table-hover table-striped">
-    <thead>
-    <tr>
-        <th>Select</th>
-        <th>Survey ID</th>
-        <th>Survey Name</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="survey : ${surveys}">
-        <td><input type="checkbox" th:checked="${survey.id}" /></td>
-        <td th:text="${survey.id}" ></td>
-        <td th:text="${survey.name}"></td>
-        <td th:switch="${survey.active}">
-            <td th:case="'true'"><a th:href="@{'/survey/desactive/' + ${survey.id}}"> Desativar </a></td>
-            <td th:case="'false'"><a th:href="@{'/survey/active/' + ${survey.id}}"> Ativar </a></td>
-            <!--
-            <td th:case="'true'"> Desativar</td>
-            <td th:case="'false"> Ativar</td>
-            -->
-        </td>
-    </tr>
-    </tbody>
-</table>
-
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="inner text-center">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Survey ID</th>
+                        <th>Survey Name</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="survey : ${surveys}">
+                        <td><input type="checkbox" th:checked="${survey.id}" /></td>
+                        <td th:text="${survey.id}"></td>
+                        <td th:text="${survey.name}"></td>
+                        <td th:switch="${survey.active}">
+                        <td th:case="'true'"><a th:href="@{'/survey/desactive/' + ${survey.id}}"> Desativar </a></td>
+                        <td th:case="'false'"><a th:href="@{'/survey/active/' + ${survey.id}}"> Ativar </a></td>
+                        <!--
+                            <td th:case="'true'"> Desativar</td>
+                            <td th:case="'false"> Ativar</td>
+                            -->
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

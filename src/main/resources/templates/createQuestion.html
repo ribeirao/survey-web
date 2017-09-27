@@ -1,89 +1,143 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Survey WEB</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
-    <h1>Survey WEB</h1>
-</head>
+<html>
+<head th:replace="fragments/header :: header"></head>
 <body>
-<form action="#" th:object="${questionForm}" th:action="@{/addQuestion}" method="post">
-    <input type="hidden" th:field="*{surveyId}"/>
-    <ul id="validation-messages" th:if="${#fields.hasErrors('*')}">
-        <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
-    </ul>
-    <table>
-        <tr>
-            <td>Enunciado da questão:</td>
-            <td><input type="textArea" th:field="*{statement}"/></td>
-            <td th:if="${#fields.hasErrors('statement')}" th:errors="*{statement}">Name Error</td>
-            <td>Libras do enunciado(código do youtube):</td>
-            <td><input type="text" th:field="*{animation}"/></td>
-        </tr>
-        <tr>
-            <td>Questão A:</td>
-            <td><input type="textArea" th:field="*{optionA}"/></td>
-            <td th:if="${#fields.hasErrors('optionA')}" th:errors="*{optionA}">Name Error</td>
-            <td>Libras da opção A(código do youtube):</td>
-            <td><input type="text" th:field="*{animationA}"/></td>
-        </tr>
-        <tr>
-            <td>Questão B:</td>
-            <td><input type="textArea" th:field="*{optionB}"/></td>
-            <td th:if="${#fields.hasErrors('optionB')}" th:errors="*{optionB}">Name Error</td>
-            <td>Libras da opção B(código do youtube):</td>
-            <td><input type="text" th:field="*{animationB}"/></td>
-        </tr>
-        <tr>
-            <td>Questão C:</td>
-            <td><input type="textArea" th:field="*{optionC}"/></td>
-            <td th:if="${#fields.hasErrors('optionC')}" th:errors="*{optionC}">Name Error</td>
-            <td>Libras da opção C(código do youtube):</td>
-            <td><input type="text" th:field="*{animationC}"/></td>
-        </tr>
-        <tr>
-            <td>Questão D:</td>
-            <td><input type="textArea" th:field="*{optionD}"/></td>
-            <td th:if="${#fields.hasErrors('optionD')}" th:errors="*{optionD}">Name Error</td>
-            <td>Libras da opção D(código do youtube):</td>
-            <td><input type="text" th:field="*{animationD}"/></td>
-        </tr>
-        <tr>
-            <td>Questão E:</td>
-            <td><input type="textArea" th:field="*{optionE}"/></td>
-            <td th:if="${#fields.hasErrors('optionE')}" th:errors="*{optionE}">Name Error</td>
-            <td>Libras da opção E(código do youtube):</td>
-            <td><input type="text" th:field="*{animationE}"/></td>
-        </tr>
-        <tr>
-            <td>Resposta Correta:</td>
-            <td>
-                <input type="radio" th:field="*{correctAnswer}" th:value="A"/>
-                <label>A</label>
-                <input type="radio" th:field="*{correctAnswer}" th:value="B"/>
-                <label>B</label>
-                <input type="radio" th:field="*{correctAnswer}" th:value="C"/>
-                <label>C</label>
-                <input type="radio" th:field="*{correctAnswer}" th:value="D"/>
-                <label>D</label>
-                <input type="radio" th:field="*{correctAnswer}" th:value="E"/>
-                <label>E</label>
-            </td>
-            <td th:if="${#fields.hasErrors('correctAnswer')}" th:errors="*{correctAnswer}">Name Error</td>
-        </tr>
-        <tr>
-            <td>Criar outra questão ao salvar:</td>
-            <td>
-                <input type="checkbox" th:field="*{moreQuestion}" value="true" checked="checked"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit">Salvar e ativar questionário</button>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="inner">
+
+                <form action="#" class="row" th:object="${questionForm}" th:action="@{/addQuestion}" method="post">
+                    <div class="col-12">
+                        <div id="validation-messages" class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('*')}">
+                            <p th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</p>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="statement">Enunciado da questão:</label>
+                            <input th:field="*{statement}" type="text" class="form-control" id="statement" placeholder="statement" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="animation">Libras do enunciado(código do youtube):</label>
+                            <input th:field="*{animation}" type="text" class="form-control" id="animation" placeholder="animation" />
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="optionA">Questão A:</label>
+                            <input th:field="*{optionA}" type="text" class="form-control" id="optionA" placeholder="optionA" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="animationA">Libras da opção A(código do youtube):</label>
+                            <input th:field="*{animationA}" type="text" class="form-control" id="animationA" placeholder="animationA" />
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="optionB">Questão B:</label>
+                            <input th:field="*{optionB}" type="text" class="form-control" id="optionB" placeholder="optionB" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="animationB">Libras da opção B(código do youtube):</label>
+                            <input th:field="*{animationB}" type="text" class="form-control" id="animationB" placeholder="animationB" />
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="optionC">Questão C:</label>
+                            <input th:field="*{optionC}" type="text" class="form-control" id="optionC" placeholder="optionC" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="animationC">Libras da opção C(código do youtube):</label>
+                            <input th:field="*{animationC}" type="text" class="form-control" id="animationC" placeholder="animationC" />
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="optionA">Questão D:</label>
+                            <input th:field="*{optionC}" type="text" class="form-control" id="optionA" placeholder="optionA" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="animationD">Libras da opção D(código do youtube):</label>
+                            <input th:field="*{animationD}" type="text" class="form-control" id="animationD" placeholder="animationD" />
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="optionE">Questão E:</label>
+                            <input th:field="*{optionE}" type="text" class="form-control" id="optionE" placeholder="optionE" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="animationE">Libras da opção E(código do youtube):</label>
+                            <input th:field="*{animationE}" type="text" class="form-control" id="animationE" placeholder="animationE" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                        <label class="form-control-label">Resposta Correta:</label><br/>
+                        <label class="custom-control custom-radio">
+                            <input id="radio1"  type="radio" class="custom-control-input"  th:field="*{correctAnswer}" th:value="A" />
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">A</span>
+                        </label>
+                        <label class="custom-control custom-radio">
+                            <input id="radio2"  type="radio" class="custom-control-input"  th:field="*{correctAnswer}" th:value="B" />
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">B</span>
+                        </label>
+                        <label class="custom-control custom-radio">
+                            <input id="radio3"  type="radio" class="custom-control-input"  th:field="*{correctAnswer}" th:value="C" />
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">C</span>
+                        </label>
+                        <label class="custom-control custom-radio">
+                            <input id="radio4"  type="radio" class="custom-control-input"  th:field="*{correctAnswer}" th:value="D" />
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">D</span>
+                        </label>
+                        <label class="custom-control custom-radio">
+                            <input id="radio5"  type="radio" class="custom-control-input"  th:field="*{correctAnswer}" th:value="E" />
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">E</span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="custom-control custom-checkbox">
+                            <input id="checkbox1"  type="checkbox" class="custom-control-input"  th:field="*{correctAnswer}" th:value="A" />
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Criar outra questão ao salvar</span>
+                        </label>
+                    </div>
+                    <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary">Criar questões</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

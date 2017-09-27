@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Survey WEB</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head th:replace="fragments/header :: header">
 
-    <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
-    <style>
-        .navigation-order{
-            margin-bottom: 30px;
-        }
-    </style>
+
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div>
-            <a href="/init">Criar Questionário</a>
-        </div>
-        <div>
-            <a href="/search">Pesquisar Questionários</a>
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="inner text-center">
+                <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                    <a href="/init" class="btn btn-primary">Criar Questionário</a>
+
+                    <a href="/search" class="btn btn-primary">Pesquisar Questionários</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
