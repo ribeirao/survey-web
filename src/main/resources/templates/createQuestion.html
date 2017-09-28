@@ -8,6 +8,7 @@
             <div class="inner">
 
                 <form action="#" class="row" th:object="${questionForm}" th:action="@{/addQuestion}" method="post">
+                    <input type="hidden" th:field="*{surveyId}" />
                     <div class="col-12">
                         <div id="validation-messages" class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('*')}">
                             <p th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</p>
@@ -69,7 +70,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label class="form-control-label" for="optionA">Questão D:</label>
-                            <input th:field="*{optionC}" type="text" class="form-control" id="optionA" placeholder="optionA" />
+                            <input th:field="*{optionD}" type="text" class="form-control" id="optionD" placeholder="optionD" />
                         </div>
                     </div>
                     <div class="col-6">
@@ -123,7 +124,7 @@
                     </div>
                     <div class="col-12">
                         <label class="custom-control custom-checkbox">
-                            <input id="checkbox1"  type="checkbox" class="custom-control-input"  th:field="*{correctAnswer}" th:value="A" />
+                            <input id="checkbox1"  type="checkbox" class="custom-control-input" name="*{moreQuestion}" value="true" />
                             <span class="custom-control-indicator"></span>
                             <span class="custom-control-description">Criar outra questão ao salvar</span>
                         </label>

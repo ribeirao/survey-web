@@ -6,31 +6,49 @@
     <div class="site-wrapper-inner">
         <div class="cover-container">
             <div class="inner text-center">
-                <table class="table table-bordered table-hover table-striped">
-                    <thead>
-                    <tr>
-                        <th>Select</th>
-                        <th>Survey ID</th>
-                        <th>Survey Name</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="survey : ${surveys}">
-                        <td><input type="checkbox" th:checked="${survey.id}" /></td>
-                        <td th:text="${survey.id}"></td>
-                        <td th:text="${survey.name}"></td>
-                        <td th:switch="${survey.active}">
-                        <td th:case="'true'"><a th:href="@{'/survey/desactive/' + ${survey.id}}"> Desativar </a></td>
-                        <td th:case="'false'"><a th:href="@{'/survey/active/' + ${survey.id}}"> Ativar </a></td>
-                        <!--
-                            <td th:case="'true'"> Desativar</td>
-                            <td th:case="'false"> Ativar</td>
-                            -->
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+
+
+
+                <div id="accordion" role="tablist">
+                    <div class="card  text-white bg-dark " th:each="survey : ${surveys}">
+                        <div class="card-header" role="tab" th:id="${'heading-' + survey.id}">
+                            <h5 class="mb-0">
+                                <a data-toggle="collapse" th:href="${'#collapse-'+survey.id}" aria-expanded="true" aria-controls="collapseOne" th:text="${survey.name}">
+
+                                </a>
+                                <span class="pull-right">
+                                    <span th:if="${survey.active}"><a th:href="@{'/changeStatus/' + ${survey.id}}"> <i class="fa fa-times" aria-hidden="true"></i> </a></span>
+                                    <span th:if="${!survey.active}"><a th:href="@{'/changeStatus/' + ${survey.id}}"> <i class="fa fa-check" aria-hidden="true"></i> </a></span>
+
+                                </span>
+                            </h5>
+                        </div>
+
+                        <div th:id="${'collapse-'+survey.id}" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Questão</th>
+                                        <th>Resposta</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="${survey.questions} : ${question}">
+                                        <td th:text="${question.statement}"></td>
+                                        <td th:text="${question.correctAnswer}"></td>
+                                    </tr>
+                                    <tr th:if="${survey.questions}">
+                                        <td colspan="2">Nao existe questoes cadastradas</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
