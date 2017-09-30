@@ -28,21 +28,7 @@ public class SearchSurveyController {
     public String listAll(Model model) {
 
         List<Survey> surveys = surveyService.retrieveAllSurveys();
-
-        log.info(surveys.toString());
-
-        for (Survey s : surveys) {
-            if (s.getQuestions().isEmpty()) {
-                log.info("name: " + s.getName() + " estah nulo.");
-            } else {
-                List<Question> questions = s.getQuestions();
-                log.info("name: " + s.getName() + " tem questoes.");
-                for(Question q : questions) {
-                    log.info("question: " + q.getStatement());
-                }
-            }
-        }
-
+        
         model.addAttribute("surveys", surveys);
 
         return "listSurvey";
