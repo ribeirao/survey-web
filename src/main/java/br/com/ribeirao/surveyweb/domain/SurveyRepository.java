@@ -12,5 +12,7 @@ public interface SurveyRepository extends CrudRepository<Survey, Integer> {
 
     List<Survey> findById(Integer... questions);
 
+    Survey findOne(Integer surveyId);
+
 
 }

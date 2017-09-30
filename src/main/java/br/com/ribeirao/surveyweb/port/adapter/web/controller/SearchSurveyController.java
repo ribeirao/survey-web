@@ -3,6 +3,7 @@ package br.com.ribeirao.surveyweb.port.adapter.web.controller;
 import java.util.List;
 import java.util.logging.Logger;
 
+import br.com.ribeirao.surveyweb.domain.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,18 @@ public class SearchSurveyController {
 
         log.info(surveys.toString());
 
+        for (Survey s : surveys) {
+            if (s.getQuestions().isEmpty()) {
+                log.info("name: " + s.getName() + " estah nulo.");
+            } else {
+                List<Question> questions = s.getQuestions();
+                log.info("name: " + s.getName() + " tem questoes.");
+                for(Question q : questions) {
+                    log.info("question: " + q.getStatement());
+                }
+            }
+        }
+
         model.addAttribute("surveys", surveys);
 
         return "listSurvey";
@@ -38,10 +51,9 @@ public class SearchSurveyController {
     @RequestMapping(value = "/changeStatus/{surveyId}", method = RequestMethod.GET)
     public String changeStatus(@PathVariable Integer surveyId, Model model) {
 
+        surveyService.changeStatus(surveyId);
 
         return "redirect:/list";
-
-
-
     }
+
 }

@@ -65,4 +65,28 @@ public class SurveyService {
 
         return list;
     }
+
+    public void changeStatus(Integer surveyId) {
+        Survey survey = surveyRepository.findOne(surveyId);
+
+        if (survey.isActive()) {
+            deactiveStatus(survey);
+        } else {
+            activeStatus(survey);
+        }
+    }
+
+    private void activeStatus(Survey survey) {
+        survey.setActive(Boolean.TRUE);
+
+        surveyRepository.save(survey);
+
+        List<Survey> surveys = surveyRepository.findAll();
+        surveys.stream().filter(surveyDeactive->!surveyDeactive.equals(survey)).forEach(surveyDeactive -> deactiveStatus(surveyDeactive));
+    }
+
+    private void deactiveStatus(Survey survey) {
+        survey.setActive(Boolean.FALSE);
+        surveyRepository.save(survey);
+    }
 }

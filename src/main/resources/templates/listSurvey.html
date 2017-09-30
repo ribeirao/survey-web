@@ -34,11 +34,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="${survey.questions} : ${question}">
+                                    <tr th:each="question : ${survey.questions}"
+
+                                        th.object="${question}">
+
                                         <td th:text="${question.statement}"></td>
                                         <td th:text="${question.correctAnswer}"></td>
                                     </tr>
-                                    <tr th:if="${survey.questions}">
+                                    <tr th:if="${#lists.size(survey.questions) == 0}">
                                         <td colspan="2">Nao existe questoes cadastradas</td>
                                     </tr>
 
