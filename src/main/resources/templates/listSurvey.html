@@ -15,8 +15,7 @@
                                    aria-controls="collapseOne" th:text="${survey.name}">
                                 </a>
                                 <span class="pull-right">
-                                    <span th:if="${survey.active}"><a th:href="@{'/changeStatus/' + ${survey.id}}"> <i
-                                            class="fa fa-times" aria-hidden="true"></i> </a></span>
+                                    <span th:if="${survey.active}"><i class="fa fa-times" aria-hidden="true"></i></span>
                                     <span th:if="${!survey.active}"><a th:href="@{'/changeStatus/' + ${survey.id}}"> <i
                                             class="fa fa-check" aria-hidden="true"></i> </a></span>
                                     <span><a
