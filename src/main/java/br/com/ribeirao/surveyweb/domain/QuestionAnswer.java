@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class QuestionAnswer {
@@ -13,16 +14,16 @@ public class QuestionAnswer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int questionId;
+    @OneToOne
+    private Question question;
 
     @Column
     private String answer;
 
     public QuestionAnswer() {}
 
-    public QuestionAnswer(int questionId, String answer) {
-        this.id = id;
-        this.questionId = questionId;
+    public QuestionAnswer(Question question, String answer) {
+        this.question = question;
         this.answer = answer;
     }
 
@@ -34,12 +35,12 @@ public class QuestionAnswer {
         this.id = id;
     }
 
-    public int getQuestionId() {
-        return questionId;
+    public Question getQuestionId() {
+        return question;
     }
 
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
+    public void setQuestionId(Question question) {
+        this.question = question;
     }
 
     public String getAnswer() {
@@ -52,7 +53,7 @@ public class QuestionAnswer {
 
     @Override
     public String toString() {
-        return "QuestionAnswer{" + "id=" + id + ", questionId=" + questionId + ", answer='" + answer
+        return "QuestionAnswer{" + "id=" + id + ", question=" + question + ", answer='" + answer
                 + '\'' + '}';
     }
 
@@ -65,9 +66,9 @@ public class QuestionAnswer {
 
         QuestionAnswer that = (QuestionAnswer) o;
 
-        if (questionId != that.questionId)
-            return false;
         if (id != null ? !id.equals(that.id) : that.id != null)
+            return false;
+        if (question != null ? !question.equals(that.question) : that.question != null)
             return false;
         return answer != null ? answer.equals(that.answer) : that.answer == null;
     }
@@ -75,7 +76,7 @@ public class QuestionAnswer {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + questionId;
+        result = 31 * result + (question != null ? question.hashCode() : 0);
         result = 31 * result + (answer != null ? answer.hashCode() : 0);
         return result;
     }

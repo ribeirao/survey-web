@@ -7,12 +7,12 @@
         <div class="cover-container">
             <div class="inner text-center">
                 <div id="accordion" role="tablist">
+                    <span th:if="${#lists.size(answers) == 0}">Não existem respostas para este questionário.</span>
                     <div class="card  text-white bg-dark " th:each="answer : ${answers}">
                         <div class="card-header" role="tab" th:id="${'heading-' + answer.id}">
                             <h5 class="mb-0">
                                 <a data-toggle="collapse" th:href="${'#collapse-'+ answer.id}" aria-expanded="true"
                                    aria-controls="collapseOne" th:text="${answer.name}">
-
                                 </a>
                             </h5>
                         </div>
@@ -26,26 +26,23 @@
                                         <th>Nome do avaliado</th>
                                         <th>Questão</th>
                                         <th>Resposta</th>
+                                        <th>Resposta Correta</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td th:text="${answer.name}"></td>
                                     </tr>
-                                    <tr th:each="question : ${answer.questionAnswerList}"
-
-                                        th.object="${question}">
-
-                                        <td th:text="${question.statement}"></td>
-                                        <td th:text="${question.correctAnswer}"></td>
+                                    <tr th:each="question : ${answer.questionAnswerList}" th.object="${question}">
+                                        <td th:text="${question.question.statement}"></td>
+                                        <td th:text="${question.answer}"></td>
+                                        <td th:text="${question.question.correctAnswer}"></td>
                                     </tr>
                                     <tr th:if="${#lists.size(answer.questionAnswerList) == 0}">
-                                        <td colspan="2">Nao existe questoes cadastradas</td>
+                                        <td colspan="4">Não existem respostas para este questionário</td>
                                     </tr>
-
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>

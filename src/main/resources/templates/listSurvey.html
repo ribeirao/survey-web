@@ -6,15 +6,13 @@
     <div class="site-wrapper-inner">
         <div class="cover-container">
             <div class="inner text-center">
-
-
                 <div id="accordion" role="tablist">
+                    <span th:if="${#lists.size(surveys) == 0}">Não existem questionários cadastrados.</span>
                     <div class="card  text-white bg-dark " th:each="survey : ${surveys}">
                         <div class="card-header" role="tab" th:id="${'heading-' + survey.id}">
                             <h5 class="mb-0">
                                 <a data-toggle="collapse" th:href="${'#collapse-'+survey.id}" aria-expanded="true"
                                    aria-controls="collapseOne" th:text="${survey.name}">
-
                                 </a>
                                 <span class="pull-right">
                                     <span th:if="${survey.active}"><a th:href="@{'/changeStatus/' + ${survey.id}}"> <i
@@ -23,7 +21,6 @@
                                             class="fa fa-check" aria-hidden="true"></i> </a></span>
                                     <span><a
                                             th:href="@{'/listAnswer/' + ${survey.id}}"> Visualizar respostas </a></span>
-
                                 </span>
                             </h5>
                         </div>
@@ -39,20 +36,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="question : ${survey.questions}"
-
-                                        th.object="${question}">
-
+                                    <tr th:each="question : ${survey.questions}" th.object="${question}">
                                         <td th:text="${question.statement}"></td>
                                         <td th:text="${question.correctAnswer}"></td>
                                     </tr>
                                     <tr th:if="${#lists.size(survey.questions) == 0}">
                                         <td colspan="2">Nao existe questoes cadastradas</td>
                                     </tr>
-
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>

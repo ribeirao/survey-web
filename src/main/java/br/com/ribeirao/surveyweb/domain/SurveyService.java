@@ -18,6 +18,9 @@ public class SurveyService {
     @Autowired
     private AnswerRepository answerRepository;
 
+    @Autowired
+    private QuestionRepository questionRepository;
+
     public Survey retrieveActiveSurvey() {
         return surveyRepository.findOneByActive(true);
     }
@@ -59,8 +62,9 @@ public class SurveyService {
 
     private List<QuestionAnswer> constructQuestionAnswerList(SaveAnswerCommand command) {
         List<QuestionAnswer> list = new ArrayList<>();
-        command.getQuestionAnswers().stream()
-                .forEach(qa -> list.add(new QuestionAnswer(qa.getQuestionId(), qa.getAnswer())));
+        command.getQuestionAnswers().stream().forEach(
+                qa -> list.add(new QuestionAnswer(questionRepository.findOne(qa.getQuestionId()),
+                        qa.getAnswer())));
 
         return list;
     }
