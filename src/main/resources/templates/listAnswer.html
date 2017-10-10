@@ -18,6 +18,7 @@
                                         <th>Questão</th>
                                         <th>Resposta</th>
                                         <th>Resposta Correta</th>
+                                        <th>Data da resposta</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -26,6 +27,7 @@
                                         <td th:text="${question.question.statement}"></td>
                                         <td th:text="${question.answer}"></td>
                                         <td th:text="${question.question.correctAnswer}"></td>
+                                        <td th:text="${answer.formattedDate}"></td>
                                     </tr>
                                     <tr th:if="${#lists.size(answer.questionAnswerList) == 0}">
                                         <td colspan="4">Não existem respostas para este questionário</td>

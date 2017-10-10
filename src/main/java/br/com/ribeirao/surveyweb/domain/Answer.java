@@ -1,5 +1,7 @@
 package br.com.ribeirao.surveyweb.domain;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,12 +25,15 @@ public class Answer {
 
     private String name;
 
+    private Date date;
+
     private Answer() {}
 
     public Answer(int surveyId, List<QuestionAnswer> questionAnswerList, String name) {
         this.surveyId = surveyId;
         this.questionAnswerList = questionAnswerList;
         this.name = name;
+        this.date = new Date();
     }
 
     public Long getId() {
@@ -61,6 +66,21 @@ public class Answer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getFormattedDate() {
+        if (date == null)
+            return "";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return sdf.format(date);
     }
 
     @Override
