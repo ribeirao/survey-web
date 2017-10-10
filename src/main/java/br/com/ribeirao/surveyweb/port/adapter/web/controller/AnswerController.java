@@ -23,7 +23,7 @@ public class AnswerController {
 
 
 
-    @GetMapping(value = "/list/{surveyId}")
+    @GetMapping(value = "/listAnswer/{surveyId}")
     public String listAllAnswers(@PathParam("surveyId") Integer surveyId, Model model) {
 
         List<Answer> answers = surveyService.retrieveAnswerBySurveyId(surveyId);
