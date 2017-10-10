@@ -9,16 +9,7 @@
                 <div id="accordion" role="tablist">
                     <span th:if="${#lists.size(answers) == 0}">Não existem respostas para este questionário.</span>
                     <div class="card  text-white bg-dark " th:each="answer : ${answers}">
-                       <!-- <div class="card-header" role="tab" th:id="${'heading-' + answer.id}">
-                            <h5 class="mb-0">
-                                <a data-toggle="collapse" th:href="${'#collapse-'+ answer.id}" aria-expanded="true"
-                                   aria-controls="collapseOne" th:text="${answer.name}">
-                                </a>
-                            </h5>
-                        </div>-->
-
-                        <div><!--th:id="${'collapse-'+answer.id}" class="collapse show" role="tabpanel"
-                             aria-labelledby="headingOne" data-parent="#accordion"-->
+                        <div>
                             <div class="card-body">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
@@ -43,6 +34,7 @@
                                 </table>
                             </div>
                         </div>
+                        <span><a th:href="@{'/list/'}"> Voltar </a></span>
                     </div>
                 </div>
             </div>
