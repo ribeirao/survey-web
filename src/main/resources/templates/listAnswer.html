@@ -30,10 +30,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td th:text="${answer.name}"></td>
-                                    </tr>
                                     <tr th:each="question : ${answer.questionAnswerList}" th.object="${question}">
+                                        <td th:text="${answer.name}"></td>
                                         <td th:text="${question.question.statement}"></td>
                                         <td th:text="${question.answer}"></td>
                                         <td th:text="${question.question.correctAnswer}"></td>
