@@ -21,11 +21,14 @@ public class Answer {
     @OneToMany(cascade = CascadeType.ALL)
     private List<QuestionAnswer> questionAnswerList;
 
-    public Answer() {}
+    private String name;
 
-    public Answer(int surveyId, List<QuestionAnswer> questionAnswerList) {
+    private Answer() {}
+
+    public Answer(int surveyId, List<QuestionAnswer> questionAnswerList, String name) {
         this.surveyId = surveyId;
         this.questionAnswerList = questionAnswerList;
+        this.name = name;
     }
 
     public Long getId() {
@@ -52,10 +55,18 @@ public class Answer {
         this.questionAnswerList = questionAnswerList;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Answer{" + "id=" + id + ", surveyId=" + surveyId + ", questionAnswerList="
-                + questionAnswerList + '}';
+                + questionAnswerList + ", name='" + name + '\'' + '}';
     }
 
     @Override
@@ -71,8 +82,10 @@ public class Answer {
             return false;
         if (id != null ? !id.equals(answer.id) : answer.id != null)
             return false;
-        return questionAnswerList != null ? questionAnswerList.equals(answer.questionAnswerList)
-                : answer.questionAnswerList == null;
+        if (questionAnswerList != null ? !questionAnswerList.equals(answer.questionAnswerList)
+                : answer.questionAnswerList != null)
+            return false;
+        return name != null ? name.equals(answer.name) : answer.name == null;
     }
 
     @Override
@@ -80,6 +93,7 @@ public class Answer {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + surveyId;
         result = 31 * result + (questionAnswerList != null ? questionAnswerList.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
 }

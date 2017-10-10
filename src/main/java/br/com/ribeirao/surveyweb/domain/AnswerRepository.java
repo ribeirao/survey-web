@@ -10,5 +10,6 @@ public interface AnswerRepository extends CrudRepository<Answer, Integer> {
 
     List<Answer> findById(Integer... questions);
 
+    List<Answer> findAllBySurveyId(int surveyId);
 
 }

@@ -42,20 +42,19 @@ public class SurveyService {
 
         survey.getQuestions().add(question);
 
-        /*
-         * if (form.isMoreQuestion()) { Survey activeSurvey =
-         * surveyRepository.findOneByActive(true); activeSurvey.setActive(false);
-         * surveyRepository.save(activeSurvey); survey.setActive(true); }
-         */
-
         return surveyRepository.save(survey);
     }
 
     public boolean saveAnswer(SaveAnswerCommand command) {
-        Answer answer = new Answer(command.getSurveyId(), constructQuestionAnswerList(command));
+        Answer answer = new Answer(command.getSurveyId(), constructQuestionAnswerList(command),
+                command.getName());
 
         answerRepository.save(answer);
         return true;
+    }
+
+    public List<Answer> retrieveAnswerBySurveyId(int surveyId) {
+        return answerRepository.findAllBySurveyId(surveyId);
     }
 
     private List<QuestionAnswer> constructQuestionAnswerList(SaveAnswerCommand command) {
@@ -82,7 +81,8 @@ public class SurveyService {
         surveyRepository.save(survey);
 
         List<Survey> surveys = surveyRepository.findAll();
-        surveys.stream().filter(surveyDeactive->!surveyDeactive.equals(survey)).forEach(surveyDeactive -> deactiveStatus(surveyDeactive));
+        surveys.stream().filter(surveyDeactive -> !surveyDeactive.equals(survey))
+                .forEach(surveyDeactive -> deactiveStatus(surveyDeactive));
     }
 
     private void deactiveStatus(Survey survey) {

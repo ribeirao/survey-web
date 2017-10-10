@@ -6,12 +6,15 @@ public class SaveAnswerCommand {
 
     private int surveyId;
     private List<SaveQuestionAnswerCommand> questionAnswers;
+    private String name;
 
     private SaveAnswerCommand() {}
 
-    public SaveAnswerCommand(int surveyId, List<SaveQuestionAnswerCommand> questionAnswers) {
+    public SaveAnswerCommand(int surveyId, List<SaveQuestionAnswerCommand> questionAnswers,
+            String name) {
         this.surveyId = surveyId;
         this.questionAnswers = questionAnswers;
+        this.name = name;
     }
 
     public int getSurveyId() {
@@ -30,10 +33,18 @@ public class SaveAnswerCommand {
         this.questionAnswers = questionAnswers;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "SaveAnswerCommand{" + "surveyId=" + surveyId + ", questionAnswers="
-                + questionAnswers + '}';
+                + questionAnswers + ", name='" + name + '\'' + '}';
     }
 
     @Override
@@ -47,14 +58,17 @@ public class SaveAnswerCommand {
 
         if (surveyId != that.surveyId)
             return false;
-        return questionAnswers != null ? questionAnswers.equals(that.questionAnswers)
-                : that.questionAnswers == null;
+        if (questionAnswers != null ? !questionAnswers.equals(that.questionAnswers)
+                : that.questionAnswers != null)
+            return false;
+        return name != null ? name.equals(that.name) : that.name == null;
     }
 
     @Override
     public int hashCode() {
         int result = surveyId;
         result = 31 * result + (questionAnswers != null ? questionAnswers.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
 }
