@@ -35,11 +35,11 @@ public class QuestionAnswer {
         this.id = id;
     }
 
-    public Question getQuestionId() {
+    public Question getQuestion() {
         return question;
     }
 
-    public void setQuestionId(Question question) {
+    public void setQuestion(Question question) {
         this.question = question;
     }
 
