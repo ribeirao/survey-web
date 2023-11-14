@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: survey-web
+  profiles:
+    active: prod
+
+#DataSource
+  datasource:
+    url: ${PG_HOST}
+    username: ${PG_USER}
+    password: ${PG_PASS}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    driver: org.postgresql.Driver
+
+security:
+  user: 
+    name: ${ADMIN_USER}
+    password: ${ADMIN_PASS}
